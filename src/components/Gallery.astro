@@ -1,0 +1,62 @@
+---
+// src/components/Gallery.astro
+import { Image } from 'astro:assets';
+
+// Import each image — Astro resolves them at build time
+import img1 from '../assets/img/neonpulse6.jpg';
+import img2 from '../assets/img/neonpulse5.jpg';
+import img3 from '../assets/img/neonpulse4.jpg';
+import img4 from '../assets/img/neonpulse3.jpg';
+import img5 from '../assets/img/neonpulse7.jpg';
+import img6 from '../assets/img/neonpulse1.jpg';
+
+const images = [
+  { src: img1, alt: 'Neon Pulse live on stage' },
+  { src: img2, alt: 'Lead singer performing' },
+  { src: img3, alt: 'Drummer in action' },
+  { src: img4, alt: 'Bass player close-up' },
+  { src: img5, alt: 'Festival crowd' },
+  { src: img6, alt: 'Band bowing after show' },
+];
+---
+
+<section id="gallery" class="relative py-24 md:py-32 overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block px-3 py-1 rounded-full bg-neon-magenta/10 border border-neon-magenta/30 text-neon-magenta text-xs font-semibold tracking-wider uppercase mb-4">
+        Gallery
+      </span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+        Nights You'll <span class="text-gradient">Remember</span>
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        A glimpse into the energy, the lights and the moments that make every show unforgettable.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      {images.map((img, i) => {
+        const isLarge = i === 0 || i === 5;
+        return (
+          <figure
+            class={`reveal group relative overflow-hidden rounded-2xl neon-border cursor-pointer ${isLarge ? 'col-span-2 md:col-span-1 md:row-span-2 aspect-square md:aspect-auto' : 'aspect-square'}`}
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              widths={[400, 800, 1200]}
+              sizes="(max-width: 768px) 50vw, 33vw"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <figcaption class="absolute bottom-0 left-0 right-0 p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-sm font-semibold">{img.alt}</p>
+            </figcaption>
+            <div class="absolute inset-0 bg-gradient-to-br from-neon-blue/0 to-neon-magenta/0 group-hover:from-neon-blue/20 group-hover:to-neon-magenta/20 transition-all duration-500"></div>
+          </figure>
+        );
+      })}
+    </div>
+  </div>
+</section>

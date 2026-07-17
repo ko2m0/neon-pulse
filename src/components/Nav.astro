@@ -1,0 +1,119 @@
+---
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#gigs', label: 'Gigs' },
+  { href: '#music', label: 'Music' },
+  { href: '#gallery', label: 'Gallery' },
+  { href: '#contact', label: 'Contact' },
+];
+
+import { Image } from 'astro:assets'; 
+import bandlogo from '../assets/logo/neon-pulseLogo3.png';  
+---
+
+<header
+  id="site-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav class="flex h-16 md:h-20 items-center justify-between backdrop-blur-xl bg-dark-900/60 border-b border-white/5 rounded-b-2xl px-4 md:px-6">
+      <a href="#home" class="flex items-center gap-2 group" aria-label="Neon Pulse home">
+        <h1 class="reveal reveal-delay-1 text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-black tracking-tight mb-6 contents">
+      <span class="block text-gradient">NEON</span>
+      <span class="block text-gradient-amber">PULSE</span>
+    </h1>
+    <!--
+        <img
+          src={bandlogo.src}
+          alt="Neon Pulse band logo"
+          width="220"
+          height="60"
+          class="h-8 md:h-10 w-auto transition-transform group-hover:scale-105"
+          loading="eager"
+        />
+        -->
+      </a>
+
+      <ul class="hidden md:flex items-center gap-1">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-neon-blue transition-colors relative group"
+            >
+              {link.label}
+              <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-magenta group-hover:w-3/4 transition-all duration-300"></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="#contact"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-magenta text-white text-sm font-semibold hover:shadow-[0_0_30px_rgba(0,212,255,0.5)] transition-all hover:scale-105"
+        >
+          Book Now
+        </a>
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden p-2 text-gray-300 hover:text-neon-blue"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden mt-2 rounded-2xl backdrop-blur-xl bg-dark-900/90 border border-white/10 overflow-hidden"
+    >
+      <ul class="flex flex-col p-4 gap-1">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="block px-4 py-3 rounded-xl text-gray-300 hover:text-neon-blue hover:bg-white/5 transition-colors"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li class="pt-2">
+          <a
+            href="#contact"
+            class="block text-center px-4 py-3 rounded-xl bg-gradient-to-r from-neon-blue to-neon-magenta text-white font-semibold"
+          >
+            Book the Band
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => {
+      const isOpen = !menu?.classList.contains('hidden');
+      menu?.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+    menu?.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => menu.classList.add('hidden'));
+    });
+  </script>
+</header>
+
+<style>
+  header.scrolled nav {
+    background-color: rgba(10, 10, 15, 0.85);
+    border-bottom-color: rgba(0, 212, 255, 0.15);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  }
+</style>
