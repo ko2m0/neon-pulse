@@ -1,0 +1,62 @@
+---
+// TODO: Replace placeholder images with actual Nik live/festival photography
+const liveImages = [
+  { src: '/images/nik-live/1.jpg', alt: 'Nik performing live electronic set' },
+  { src: '/images/nik-live/2.jpg', alt: 'Synthesizer setup on stage' },
+  { src: '/images/nik-live/3.jpg', alt: 'Festival performance' },
+  { src: '/images/nik-live/4.jpg', alt: 'Live electronic music performance' },
+];
+---
+
+<section id="live" class="relative py-24 md:py-32 overflow-hidden">
+  <div class="absolute inset-0 bg-grid opacity-15"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-neon-magenta/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block px-3 py-1 rounded-full bg-neon-amber/10 border border-neon-amber/30 text-neon-amber text-xs font-semibold tracking-wider uppercase mb-4">
+        Live Electronic
+      </span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+        On <span class="text-gradient-amber">Stage</span>
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        Nik's original electronic music has also taken him beyond the studio, with live performances at festivals across Europe.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      {liveImages.map((img, i) => (
+        <figure
+          key={i}
+          class={`reveal reveal-delay-${(i % 4) + 1} group relative overflow-hidden rounded-2xl neon-border cursor-pointer ${
+            i === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-square'
+          }`}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            onerror="this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-dark-700 to-dark-800 flex items-center justify-center text-gray-500 text-xs p-4 text-center\'>LIVE PHOTO PLACEHOLDER</div>'"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <figcaption class="absolute bottom-0 left-0 right-0 p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <p class="text-sm font-semibold">{img.alt}</p>
+          </figcaption>
+          <div class="absolute inset-0 bg-gradient-to-br from-neon-blue/0 to-neon-magenta/0 group-hover:from-neon-blue/20 group-hover:to-neon-magenta/20 transition-all duration-500"></div>
+        </figure>
+      ))}
+    </div>
+
+    <!-- TODO: Add video embed section when live performance videos are available
+    <div class="mt-12 reveal">
+      <div class="neon-border rounded-3xl overflow-hidden aspect-video">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe>
+      </div>
+    </div>
+    -->
+  </div>
+</section>

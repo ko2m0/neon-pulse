@@ -1,0 +1,92 @@
+---
+
+
+const heroImage = '../assets/img/neonpulse1.jpg';
+
+---
+
+
+<section
+  id="home"
+  class="relative min-h-screen flex items-center justify-center overflow-hidden"
+  aria-label="Nik Owen Jones hero"
+>
+  <!-- Background image with overlay -->
+  <div class="absolute inset-0">
+    <img
+      src={heroImage}
+      alt="Nik Owen Jones"
+      class="w-full h-full object-cover scale-110"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      onerror="this.style.display='none'"
+    />
+    <!-- Fallback gradient if image fails to load -->
+    <div class="absolute inset-0 bg-linear-to-br from-dark-900 via-dark-800 to-dark-900"></div>
+    <div class="absolute inset-0 bg-linear-to-b from-dark-900/80 via-dark-900/40 to-dark-900"></div>
+    <div class="absolute inset-0 bg-linear-to-r from-neon-blue/15 via-transparent to-neon-magenta/15"></div>
+    <div class="absolute inset-0 bg-grid opacity-40"></div>
+  </div>
+
+  <!-- Decorative neon orbs - more subtle than Neon Pulse -->
+  <div class="absolute top-1/3 left-10 w-80 h-80 bg-neon-blue/15 rounded-full blur-3xl animate-float pointer-events-none"></div>
+  <div class="absolute bottom-1/3 right-10 w-96 h-96 bg-neon-magenta/15 rounded-full blur-3xl animate-float pointer-events-none" style="animation-delay: 3s;"></div>
+
+  <!-- Subtle waveform decoration 
+  <svg class="absolute bottom-0 left-0 right-0 w-full h-32 text-neon-blue/10 pointer-events-none" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path fill="currentColor" d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>-->
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center py-32">
+    <div class="reveal">
+      <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-blue/30 bg-neon-blue/5 text-neon-blue text-xs md:text-sm font-medium tracking-wider uppercase mb-6 backdrop-blur-sm">
+        <span class="w-2 h-2 rounded-full bg-neon-blue animate-pulse-slow"></span>
+        Electronic Music Producer & Live Performer
+      </p>
+    </div>
+
+    <h1 class="reveal reveal-delay-1 text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight mb-6">
+      <span class="block text-gradient">NIK OWEN</span>
+      <span class="block text-gradient-amber">JONES</span>
+    </h1>
+
+    <p class="reveal reveal-delay-1 text-lg md:text-xl text-neon-blue/80 font-medium tracking-wide mb-4">
+      Electronic Music • Synths • Sound Design
+    </p>
+
+    <p class="reveal reveal-delay-2 max-w-2xl mx-auto text-base md:text-lg text-gray-300 mb-10 leading-relaxed">
+      Keyboardist, electronic music producer and live performer creating original instrumental electronic music for stages, festivals and headphones.
+    </p>
+
+    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="#listen"
+        class="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-linear-to-r from-neon-blue to-neon-magenta text-white font-bold text-lg hover:shadow-[0_0_40px_rgba(0,212,255,0.6)] transition-all hover:scale-105"
+      >
+        <span>Listen to the Music</span>
+        <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        </svg>
+      </a>
+      <a
+        href="#about"
+        class="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2 border-white/20 bg-white/5 backdrop-blur-sm text-white font-bold text-lg hover:border-neon-blue hover:text-neon-blue hover:bg-neon-blue/10 transition-all"
+      >
+        <span>About Nik</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee strip -->
+<div class="relative overflow-hidden border-y border-white/10 bg-dark-900/80 backdrop-blur-sm py-4">
+  <div class="flex animate-marquee whitespace-nowrap">
+    {Array(2).fill(['COMPOSER', '★', 'PRODUCER', '★', 'ELECTRONIC MUSICIAN', '★', '30 YEARS OF EXPERIENCE', '★']).flat().map((item) => (
+      <span class={`mx-6 text-sm md:text-base font-bold tracking-widest ${item === '★' ? 'text-neon-magenta' : 'text-gray-400'}`}>
+        {item}
+      </span>
+    ))}
+  </div>
+</div>

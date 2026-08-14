@@ -1,0 +1,77 @@
+---
+import { contactInfo } from '../../data/nik-links';
+
+const emailAddress = contactInfo.email ?? contactInfo.emailPlaceholder;
+const isPlaceholder = contactInfo.email === null;
+---
+
+<section id="contact" class="relative py-24 md:py-32 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800/30 to-dark-900"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-blue/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <span class="inline-block px-3 py-1 rounded-full bg-neon-amber/10 border border-neon-amber/30 text-neon-amber text-xs font-semibold tracking-wider uppercase mb-4">
+        Get in Touch
+      </span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+        Let's <span class="text-gradient-amber">Connect</span>
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        For bookings, collaborations, electronic music enquiries or general information, get in touch.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1 neon-border rounded-3xl p-8 md:p-12 bg-dark-800/40 backdrop-blur-sm text-center">
+      <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-neon-blue to-neon-magenta flex items-center justify-center">
+        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </div>
+
+      <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        {isPlaceholder ? 'Email Coming Soon' : 'Send an Email'}
+      </h3>
+
+      {isPlaceholder ? (
+        <div>
+          <p class="text-gray-400 mb-6">
+            Nik's direct contact email will be available here shortly. In the meantime, you can reach out via the Neon Pulse contact form or social channels.
+          </p>
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-neon-blue to-neon-magenta text-white font-bold hover:shadow-[0_0_30px_rgba(0,212,255,0.5)] transition-all hover:scale-105"
+          >
+            Contact via Neon Pulse
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      ) : (
+        <div>
+          <a
+            href={`mailto:${emailAddress}`}
+            class="inline-flex items-center gap-3 text-xl md:text-2xl font-bold text-gradient hover:scale-105 transition-transform"
+          >
+            {emailAddress}
+          </a>
+          <p class="text-sm text-gray-500 mt-4">
+            We typically respond within 48 hours.
+          </p>
+        </div>
+      )}
+
+      <!--
+        TODO: Add social links when Nik's personal social accounts are confirmed.
+        Example structure:
+        <div class="mt-8 pt-8 border-t border-white/10">
+          <p class="text-sm text-gray-500 mb-4">Or follow Nik on:</p>
+          <div class="flex items-center justify-center gap-4">
+            <a href="https://instagram.com/..." target="_blank" rel="noopener noreferrer">Instagram</a>
+          </div>
+        </div>
+      -->
+    </div>
+  </div>
+</section>
