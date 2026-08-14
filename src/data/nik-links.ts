@@ -43,6 +43,7 @@ export const nikNavLinks: NavLink[] = [
   { href: '#live', label: 'Live' },
   { href: '#listen', label: 'Listen' },
   { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Neon Pulse' },
 ];
 
 // Contact information

@@ -1,20 +1,43 @@
 ---
-  import '../styles/global.css'
-
+import '../styles/global.css'
 
 export interface Props {
   title: string;
   description?: string;
   image?: string;
   canonical?: string;
+  jsonLd?: object;
 }
 
 const {
   title,
   description = "Neon Pulse — the UK's premier rock & pop covers band. Available for festivals, weddings, corporate events and private parties across the United Kingdom.",
-  image = "/images/hero.jpg",
+  image = "../assets/logo/neon-pulseLogo3.png",
   canonical = "https://neonpulse.co.uk",
+  jsonLd,
 } = Astro.props;
+
+// Default Neon Pulse schema
+const defaultSchema = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Neon Pulse",
+  "url": "https://neonpulse.co.uk",
+  "logo": "https://neonpulse.co.uk/images/logo.png",
+  "image": image,
+  "genre": ["Rock", "Pop", "Cover Band"],
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "GB"
+  },
+  "sameAs": [
+    "https://www.instagram.com/neonpulseband",
+    "https://www.facebook.com/neonpulseband"
+  ]
+};
+
+const schemaToUse = jsonLd ?? defaultSchema;
 ---
 
 <!doctype html>
@@ -50,34 +73,14 @@ const {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/index.css" />
 
     <!-- Preload critical hero image -->
-    <link rel="preload" as="image" href="/images/hero.jpg" />
+    <link rel="preload" as="image" href={image} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <link href="../styles/output.css" rel="stylesheet">
-
-
     <!-- JSON-LD structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "MusicGroup",
-      "name": "Neon Pulse",
-      "url": "https://neonpulse.co.uk",
-      "logo": "https://neonpulse.co.uk/images/logo.png",
-      "image": image,
-      "genre": ["Rock", "Pop", "Cover Band"],
-      "description": description,
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "GB"
-      },
-      "sameAs": [
-        "https://www.instagram.com/neonpulseband",
-        "https://www.facebook.com/neonpulseband"
-      ]
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(schemaToUse)} />
 
     <meta name="robots" content="index, follow, max-image-preview:large" />
   </head>

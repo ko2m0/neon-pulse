@@ -10,16 +10,23 @@ import NikContact from '../components/nik/Contact.astro';
 import BackToNeonPulse from '../components/nik/BackToNeonPulse.astro';
 import Footer from '../components/Footer.astro';
 
+import { nikNavLinks } from '../data/nik-links'
+
 const title = "Nik Owen Jones | Electronic Music & Live Performance";
 const description =
   "Nik Owen Jones — electronic music producer, keyboardist and live performer.";
 ---
 <Layout
-title="Nik Owen Jones"
+  title="Nik Owen Jones"
   description="Nik Owen Jones">
 
-<Nav />
-<main>
+<Nav
+variant="nik"
+    links={nikNavLinks}
+    ctaLabel="Listen"
+    ctaHref="#listen"
+     />
+<main class="overflow-x-hidden">
   <!-- Hero -->
 <Hero />
 <About />

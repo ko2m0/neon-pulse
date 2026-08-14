@@ -1,14 +1,33 @@
 ---
-const links = [
+import neonPulseLogo from '../assets/logo/neon-pulseLogo3.png';
+import { Image } from 'astro:assets';
+
+export interface Props {
+  links?: Array<{ href: string; label: string }>;
+  ctaLabel?: string;
+  ctaHref?: string;
+  variant?: 'neon-pulse' | 'nik';
+}
+
+const {
+  links,
+  ctaLabel = 'Book Now',
+  ctaHref = '#contact',
+  variant = 'neon-pulse',
+} = Astro.props;
+
+const defaultLinks = [
   { href: '#about', label: 'About' },
   { href: '#gigs', label: 'Gigs' },
   { href: '#music', label: 'Music' },
   { href: '#gallery', label: 'Gallery' },
   { href: '#contact', label: 'Contact' },
+  { href: '/nik-owen-jones', label: 'Nik Owen Jones' },
 ];
 
-import { Image } from 'astro:assets'; 
-import bandlogo from '../assets/logo/neon-pulseLogo3.png';  
+const navLinks = links ?? defaultLinks;
+const isNik = variant === 'nik';
+const logoAlt = isNik ? 'Nik Owen Jones logo' : 'Neon Pulse band logo';
 ---
 
 <header
@@ -17,25 +36,29 @@ import bandlogo from '../assets/logo/neon-pulseLogo3.png';
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <nav class="flex h-16 md:h-20 items-center justify-between backdrop-blur-xl bg-dark-900/60 border-b border-white/5 rounded-b-2xl px-4 md:px-6">
-      <a href="#home" class="flex items-center gap-2 group" aria-label="Neon Pulse home">
-        <h1 class="reveal reveal-delay-1 text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-black tracking-tight mb-6 contents">
-      <span class="block text-gradient">NEON</span>
-      <span class="block text-gradient-amber">PULSE</span>
-    </h1>
-    <!--
-        <img
-          src={bandlogo.src}
-          alt="Neon Pulse band logo"
-          width="220"
-          height="60"
-          class="h-8 md:h-10 w-auto transition-transform group-hover:scale-105"
-          loading="eager"
-        />
-        -->
-      </a>
+       <a
+  href={isNik ? '/nik-owen-jones/' : '#home'}
+  class="flex items-center gap-2 group min-w-0"
+  aria-label={isNik ? 'Nik Owen Jones home' : 'Neon Pulse home'}
+>
+  {isNik ? (
+    <span class="text-sm sm:text-base md:text-xl font-black tracking-tight text-gradient whitespace-nowrap group-hover:scale-105 transition-transform">
+      NIK OWEN JONES
+    </span>
+  ) : (
+    <Image
+      src={neonPulseLogo}
+      alt="Neon Pulse band logo"
+      width={80}
+      height={40}
+      class="h-8 md:h-10 w-auto transition-transform group-hover:scale-105"
+      format="webp"
+    />
+  )}
+</a>
 
       <ul class="hidden md:flex items-center gap-1">
-        {links.map((link) => (
+        {navLinks.map((link) => (
           <li>
             <a
               href={link.href}
@@ -50,10 +73,14 @@ import bandlogo from '../assets/logo/neon-pulseLogo3.png';
 
       <div class="flex items-center gap-3">
         <a
-          href="#contact"
-          class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-magenta text-white text-sm font-semibold hover:shadow-[0_0_30px_rgba(0,212,255,0.5)] transition-all hover:scale-105"
+          href={ctaHref}
+          class={`hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-semibold hover:scale-105 transition-all ${
+            isNik
+              ? 'bg-gradient-to-r from-neon-blue to-neon-magenta hover:shadow-[0_0_30px_rgba(0,212,255,0.5)]'
+              : 'bg-gradient-to-r from-neon-blue to-neon-magenta hover:shadow-[0_0_30px_rgba(0,212,255,0.5)]'
+          }`}
         >
-          Book Now
+          {ctaLabel}
         </a>
         <button
           id="mobile-menu-btn"
@@ -69,12 +96,12 @@ import bandlogo from '../assets/logo/neon-pulseLogo3.png';
     </nav>
 
     <!-- Mobile menu -->
-    <div
+   <div
       id="mobile-menu"
       class="md:hidden hidden mt-2 rounded-2xl backdrop-blur-xl bg-dark-900/90 border border-white/10 overflow-hidden"
     >
       <ul class="flex flex-col p-4 gap-1">
-        {links.map((link) => (
+        {navLinks.map((link) => (
           <li>
             <a
               href={link.href}
@@ -86,15 +113,16 @@ import bandlogo from '../assets/logo/neon-pulseLogo3.png';
         ))}
         <li class="pt-2">
           <a
-            href="#contact"
+            href={ctaHref}
             class="block text-center px-4 py-3 rounded-xl bg-gradient-to-r from-neon-blue to-neon-magenta text-white font-semibold"
           >
-            Book the Band
+            {ctaLabel}
           </a>
         </li>
       </ul>
     </div>
   </div>
+
 
   <script>
     const btn = document.getElementById('mobile-menu-btn');
