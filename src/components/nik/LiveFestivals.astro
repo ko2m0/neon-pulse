@@ -1,10 +1,17 @@
 ---
-// TODO: Replace placeholder images with actual Nik live/festival photography
+import { Image } from 'astro:assets';
+
+// Import images as ES modules
+import img1 from '../../assets/img/nikowenjones/gallery/nikowenjones-gllry1.jpg';
+import img2 from '../../assets/img/nikowenjones/gallery/nikowenjones-gllry2.jpg';
+import img3 from '../../assets/img/nikowenjones/gallery/nikowenjones-gllry3.jpg';
+import img4 from '../../assets/img/nikowenjones/gallery/nikowenjones-gllry4.jpg';
+
 const liveImages = [
-  { src: '/images/nik-live/1.jpg', alt: 'Nik performing live electronic set' },
-  { src: '/images/nik-live/2.jpg', alt: 'Synthesizer setup on stage' },
-  { src: '/images/nik-live/3.jpg', alt: 'Festival performance' },
-  { src: '/images/nik-live/4.jpg', alt: 'Live electronic music performance' },
+  { src: img1, alt: 'Nik performing live electronic set' },
+  { src: img2, alt: 'Synthesizer setup on stage' },
+  { src: img3, alt: 'Festival performance' },
+  { src: img4, alt: 'Live electronic music performance' },
 ];
 ---
 
@@ -29,12 +36,11 @@ const liveImages = [
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
       {liveImages.map((img, i) => (
         <figure
-          key={i}
           class={`reveal reveal-delay-${(i % 4) + 1} group relative overflow-hidden rounded-2xl neon-border cursor-pointer ${
             i === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-square'
           }`}
         >
-          <img
+          <Image
             src={img.src}
             alt={img.alt}
             loading="lazy"
@@ -50,13 +56,26 @@ const liveImages = [
         </figure>
       ))}
     </div>
-
-    <!-- TODO: Add video embed section when live performance videos are available
-    <div class="mt-12 reveal">
-      <div class="neon-border rounded-3xl overflow-hidden aspect-video">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe>
+    <!-- TODO: Add video embed section when live performance videos are available-->
+        <!-- Live Performance Video Embed -->
+    <div class="mt-12 md:mt-16 reveal reveal-delay-2">
+      <div class="neon-border rounded-3xl overflow-hidden bg-dark-900 aspect-video relative group">
+        <iframe
+          src="https://www.youtube.com/embed/sGFFMVVJTpI?si=OVTtm3HtQdEzGmL4?rel=0&modestbranding=1"
+          title="Nik Owen Jones Live Performance"
+          class="absolute inset-0 w-full h-full border-0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+        
+        <!-- Optional: Subtle hover glow effect to match the rest of the site -->
+        <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-neon-blue/10 to-neon-magenta/10"></div>
       </div>
     </div>
-    -->
+    
   </div>
 </section>
+
+

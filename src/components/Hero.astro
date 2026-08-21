@@ -1,7 +1,7 @@
 ---
-const heroImage = '/images/hero.jpg';
-import bandlogo from '../assets/logo/neon-pulseLogo3.png';  
-
+import { Image } from 'astro:assets';
+import heroImage from '../assets/img/neonpulse-hero1.png'
+import bandlogo from '../assets/logo/neon-pulseLogo3.png'
 ---
 
 <section
@@ -11,9 +11,9 @@ import bandlogo from '../assets/logo/neon-pulseLogo3.png';
 >
   <!-- Background image with overlay -->
   <div class="absolute inset-0">
-    <img
+    <Image
       src={heroImage}
-      alt=""
+      alt="Neon Pulse Hero"
       class="w-full h-full object-cover scale-110 animate-[pulseSlow_5s_ease-in-out_infinite]"
       loading="eager"
       fetchpriority="high"

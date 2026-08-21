@@ -1,10 +1,7 @@
 ---
-
-
-const heroImage = '../assets/img/neonpulse1.jpg';
-
+import { Image } from 'astro:assets';
+import heroImage from '../../assets/img/nikowenjones/nikowenjones-hero1.jpg'
 ---
-
 
 <section
   id="home"
@@ -13,25 +10,28 @@ const heroImage = '../assets/img/neonpulse1.jpg';
 >
   <!-- Background image with overlay -->
   <div class="absolute inset-0">
+    <!-- 2. Use standard <img> with .src for reliable full-screen backgrounds -->
     <img
-      src={heroImage}
-      alt="Nik Owen Jones"
+      src={heroImage.src}
+      alt="Nik Owen Jones performing"
       class="w-full h-full object-cover scale-110"
       loading="eager"
       fetchpriority="high"
       decoding="async"
-      onerror="this.style.display='none'"
     />
-    <!-- Fallback gradient if image fails to load -->
-    <div class="absolute inset-0 bg-linear-to-br from-dark-900 via-dark-800 to-dark-900"></div>
-    <div class="absolute inset-0 bg-linear-to-b from-dark-900/80 via-dark-900/40 to-dark-900"></div>
+    
+    <!-- 3. Add opacity (/80, /60) to gradients so the image shows through! -->
+    <div class="absolute inset-0 bg-linear-to-b from-dark-900/80 via-dark-800/60 to-dark-900/90"></div>
     <div class="absolute inset-0 bg-linear-to-r from-neon-blue/15 via-transparent to-neon-magenta/15"></div>
-    <div class="absolute inset-0 bg-grid opacity-40"></div>
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
   </div>
 
-  <!-- Decorative neon orbs - more subtle than Neon Pulse -->
+  <!-- Decorative neon orbs -->
   <div class="absolute top-1/3 left-10 w-80 h-80 bg-neon-blue/15 rounded-full blur-3xl animate-float pointer-events-none"></div>
   <div class="absolute bottom-1/3 right-10 w-96 h-96 bg-neon-magenta/15 rounded-full blur-3xl animate-float pointer-events-none" style="animation-delay: 3s;"></div>
+
+  
+  
 
   <!-- Subtle waveform decoration 
   <svg class="absolute bottom-0 left-0 right-0 w-full h-32 text-neon-blue/10 pointer-events-none" viewBox="0 0 1440 120" preserveAspectRatio="none">

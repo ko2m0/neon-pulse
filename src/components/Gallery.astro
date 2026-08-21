@@ -3,20 +3,26 @@
 import { Image } from 'astro:assets';
 
 // Import each image — Astro resolves them at build time
-import img1 from '../assets/img/neonpulse6.jpg';
-import img2 from '../assets/img/neonpulse5.jpg';
-import img3 from '../assets/img/neonpulse4.jpg';
-import img4 from '../assets/img/neonpulse3.jpg';
-import img5 from '../assets/img/neonpulse7.jpg';
-import img6 from '../assets/img/neonpulse1.jpg';
+import img1 from '../assets/img/gallery/neonpulse-gllry1.jpeg';
+import img2 from '../assets/img/gallery/nesslive.jpg';
+import img3 from '../assets/img/gallery/petelive.jpg';
+import img4 from '../assets/img/gallery/niklive.jpg';
+import img5 from '../assets/img/gallery/neonpulse-gllry3.png';
+import img6 from '../assets/img/gallery/neonpulse-gllry2.jpeg';
+import img7 from '../assets/img/gallery/neonpulse-gllry4.png';
+import img8 from '../assets/img/gallery/neonpulse-gllry5.png';
+import img9 from '../assets/img/gallery/neonpulse-gllry6.jpg';
 
 const images = [
-  { src: img1, alt: 'Neon Pulse live on stage' },
-  { src: img2, alt: 'Lead singer performing' },
-  { src: img3, alt: 'Drummer in action' },
-  { src: img4, alt: 'Bass player close-up' },
-  { src: img5, alt: 'Festival crowd' },
-  { src: img6, alt: 'Band bowing after show' },
+  { src: img1, alt: 'Keyboard maestro Nik Owen Jones' },
+  { src: img2, alt: 'Lead singer Ness performing' },
+  { src: img3, alt: 'Lead singer Pete in action' },
+  { src: img4, alt: 'Nik doing his thing' },
+  { src: img5, alt: 'Pete singing his heart out' },
+  { src: img6, alt: 'The Band showing off' },
+  { src: img7, alt: 'Nik doing his thing' },
+  { src: img8, alt: 'Pete singing his heart out' },
+  { src: img9, alt: 'The Band showing off' },
 ];
 ---
 
@@ -49,11 +55,11 @@ const images = [
               widths={[400, 800, 1200]}
               sizes="(max-width: 768px) 50vw, 33vw"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute inset-0 bg-linear-to-t from-dark-900/90 via-dark-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <figcaption class="absolute bottom-0 left-0 right-0 p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <p class="text-sm font-semibold">{img.alt}</p>
             </figcaption>
-            <div class="absolute inset-0 bg-gradient-to-br from-neon-blue/0 to-neon-magenta/0 group-hover:from-neon-blue/20 group-hover:to-neon-magenta/20 transition-all duration-500"></div>
+            <div class="absolute inset-0 bg-linear-to-br from-neon-blue/0 to-neon-magenta/0 group-hover:from-neon-blue/20 group-hover:to-neon-magenta/20 transition-all duration-500"></div>
           </figure>
         );
       })}
